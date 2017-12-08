@@ -1,20 +1,13 @@
 var Post = {
   new: function() {
     var date = new Date();
-    var datestr = date.getFullYear() + '-' +
-      ("0" + (date.getMonth() + 1)).slice(-2) + '-' +
-      ("0" + date.getDate()).slice(-2);
-    var fulldatestr = datestr+' '+
-      ("0" + (date.getHours())).slice(-2) + ':' +
-      ("0" + (date.getMinutes())).slice(-2) + ':' +
-      ("0" + date.getSeconds()).slice(-2);
     var meta = {
       categories: '杂项',
       tags: '',
       layout: 'post',
       title: 'Unnamed',
-      date: datestr,
-      create: fulldatestr
+      date: date.toISOString(),
+      create: date.toISOString()
     };
     return {
       content: "",
@@ -103,7 +96,7 @@ var Post = {
     var contentstr = post.content;
     var meta = $.extend({}, post.meta);
     var date = new Date();
-    meta.date = date.toISOString().slice(0,10);
+    meta.date = date.toISOString();
     delete meta.slug;
     if (meta.published) {
       delete meta.published;
