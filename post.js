@@ -70,7 +70,11 @@ var Post = {
 
   update: function(post, callback) {
     callback = callback || function() {};
-      var name = post.meta.date +'-'+ post.meta.slug.replace(/\s+/g, "-");
+    var date = new Date(post.meta.date);
+    var datestr = date.getFullYear() + '-' +
+      ("0" + (date.getMonth() + 1)).slice(-2) + '-' +
+      ("0" + date.getDate()).slice(-2);
+    var name = datestr +'-'+ post.meta.slug.replace(/\s+/g, "-");
     var content = Post.dump(post);
     var sha = post.sha;
     var filename = name + '.md';
